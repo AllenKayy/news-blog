@@ -1,11 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@200;300;400;600;700;900&display=swap');
 
+:root {
+    --bg-color:#fff;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 html {
     font-size: 62.5%;
+}
+
+body {
+    background-color: var(--bg-color);
+    padding-inline: 4rem;
+}
+
+.nav_menu {
+    display: flex;
+    justify-content: space-between;
 }
