@@ -9,7 +9,7 @@ const getCurrentDate = () => {
         year: 'numeric'
     }
 
-    console.log(currentDate.innerText = date.toLocaleDateString("en-NG",options))
+    currentDate.innerText = date.toLocaleDateString("en-NG", options);
 }
 getCurrentDate();
 
