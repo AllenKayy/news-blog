@@ -2,6 +2,11 @@
 
 :root {
     --bg-color:#fff;
+    --black-100: #272727;
+    --black-80: #525252;
+    --black-60: #A9A9A9;
+    --black-40: #D4D4D4;
+    --black-20: #EAEAEA;
 }
 
 * {
@@ -20,7 +25,52 @@ body {
     padding-inline: 4rem;
 }
 
-.nav_menu {
+header :is(.nav_menu, .logo_container, .right_nav){
     display: flex;
+    align-items: center;
+}
+
+.nav_menu {
     justify-content: space-between;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--black-60);
+    padding-bottom: 2rem;
+}
+
+.logo_container {
+    flex-direction: column;
+}
+
+.logo {
+    font-family: 'Anton', sans-serif;
+    font-size: 3.5rem;
+    letter-spacing: 1px;
+}
+
+.logo_text {
+    font-size: 1rem;
+    color: var(--black-80);
+}
+
+.right_nav {
+    gap: 1rem;
+}
+
+.subscribe_btn {
+    padding: .6rem 1.5rem;
+    background-color: var(--black-100);
+    color: #fff;
+    border: 0;
+    border-radius: 1.6rem;
+    cursor: pointer;
+}
+
+.subscribe_btn:hover {
+    opacity: .8;
+}
+
+.darkmode {
+    transform: rotateY(180deg);
+    cursor: pointer;
 }
