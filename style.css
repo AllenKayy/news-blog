@@ -162,6 +162,7 @@ section {
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: none;
+    transition: all 0.3s ease-in-out;
 }
 
 .slider::-webkit-scrollbar {
@@ -195,7 +196,7 @@ section {
 
 .cover_img {
     width: 100%;
-    /* max-width: 70rem; */
+    max-width: 70rem;
     height: auto;
     border-radius: 6px;
     cursor: pointer;
