@@ -326,7 +326,7 @@ li.selected {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     grid-column-gap: 2rem;
-    grid-row-gap: 5rem;
+    grid-row-gap: 3rem;
     /* flex-wrap: wrap; */
     padding-left: 3rem;
     /* row-gap: 3rem; */
