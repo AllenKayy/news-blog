@@ -184,5 +184,13 @@ carouselEl.addEventListener("scroll", wrapScroll);
 startAutoplay();
 
 // Initial setup
-updateNavigation(currentIndex);
-isNavigating = false;
+setInterval(() => {
+  updateNavigation(currentIndex);
+  isNavigating = false;
+}, 3000);
+
+
+
+
+
+
