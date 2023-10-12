@@ -38,37 +38,50 @@
         <section class="section1">
             <div class="left_news">
                 <div class="carousel border_bottom">
-                    <div class="carousel_card">
-                        <img src="./assets/images/cover-image.jpg" alt="" class="cover_img">
-                        <div class="carousel_overview">
-                            <div class="top_overview">
-                                <div>
-                                    <span>1Days ago &#8226;</span>
-                                    <span>By David YAFFE-BELLANY</span>
-                                </div>
-                                <div>TECHNOLOGY</div>
+                    <div class="slider">
+                        <div class="carousel_card">
+                            <img src="./assets/images/cover-image.jpg" alt="" class="cover_img" draggable="false">                        
+                        </div>
+                        <div class="carousel_card">
+                            <img src="./assets/images/cover-image.jpg" alt="" class="cover_img" draggable="false">
+                        </div>
+                        <div class="carousel_card">
+                            <img src="./assets/images/cover-image.jpg" alt="" class="cover_img" draggable="false">
+                        </div>
+                        <div class="carousel_card">
+                            <img src="./assets/images/cover-image.jpg" alt="" class="cover_img" draggable="false">
+                        </div>
+                    </div>
+
+                    <div class="carousel_overview">
+                        <div class="top_overview">
+                            <div>
+                                <span>1Days ago &#8226;</span>
+                                <span>By David YAFFE-BELLANY</span>
                             </div>
-                            <h1>How influencers hype crypto, without disclosing their financial ties</h1>
-                            <p>How influencers hype crypto, without disclosing their financial ties, and influencers hype crypto, without disclosing their financial ties</p>
-                            <div class="carousel_navigation flex">
-                                <ul class="navigation flex">
-                                    <li class="selected"></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                </ul>
-                                <div class="carousel_btn flex">
-                                    <div class="arrow_btn prev flex">
-                                        <img src="./assets/svg/arrow-right-solid.svg" alt="" width="14">
-                                    </div>
-                                    <div class="arrow_btn next flex">
-                                        <img src="./assets/svg/arrow-right-solid.svg" alt="" width="14">
-                                    </div>
+                            <div>TECHNOLOGY</div>
+                        </div>
+                        <h1>How influencers hype crypto, without disclosing their financial ties</h1>
+                        <p>How influencers hype crypto, without disclosing their financial ties, and influencers hype crypto, without disclosing their financial ties</p>
+                        <div class="carousel_navigation flex">
+                            <ul class="navigation flex">
+                                <li class="selected"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <div class="carousel_btn flex">
+                                <div class="arrow_btn prev flex">
+                                    <img src="./assets/svg/arrow-right-solid.svg" alt="" width="14">
+                                </div>
+                                <div class="arrow_btn next flex">
+                                    <img src="./assets/svg/arrow-right-solid.svg" alt="" width="14">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="bottom_news border_bottom">
                     <div class="bottom_news_content">
                         <h3 class="bg_text">How influencers hype crypto, without disclosing their financial ties</h3>
@@ -158,7 +171,6 @@
                 console.log(window.innerWidth)
                 dropdown.innerHTML = categoryDropDown;
             } else {
-                console.log('not working')
                 dropdown.innerHTML = categoryEl;
             }
         }
