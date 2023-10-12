@@ -142,7 +142,7 @@ section {
     margin-top: 4rem;
 }
 
-.section1 :is(.bottom_news, .top_overview, .right_news, .flex),
+.section1 :is(.bottom_news, .top_overview, .flex),
 .section1 {
     display: flex;
 }
@@ -160,21 +160,62 @@ section {
     border-bottom: 1px solid var(--black-40);
 }
 
-.carousel_card {
+.carousel {
     position: relative;
     padding-bottom: 16rem;
 }
 
+.slider {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel::before,
+.carousel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 20px;
+    background-color: #000;
+}
+
+.carousel::before {
+    left: 0;
+    background: linear-gradient(90deg, white, transparent);
+}
+
+.carousel::after {
+    right: 0;
+    background: linear-gradient(90deg, transparent, white);
+}
+
+.carousel_card {
+    /* position: relative; */
+    /* scroll-snap-align: start; */
+}
+
 .cover_img {
     width: 100%;
-    /* max-width: 600px; */
+    /* max-width: 70rem; */
     height: auto;
     border-radius: 6px;
+    cursor: pointer;
 }
 
 .carousel_overview {
     width: 100%;
-    max-width: 45rem;
+    max-width: 60rem;
     background-color: #fff;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 2rem;
@@ -184,12 +225,17 @@ section {
     bottom: 4%;
     margin: auto;
     border-radius: .6rem;
+    cursor: pointer;
 }
 
 .top_overview {
     justify-content: space-between;
     font-size: var(--sm-text);
     color: var(--black-60);
+}
+
+.top_overview div:last-child {
+    letter-spacing: .3rem;
 }
 
 .carousel_overview h1 {
@@ -276,27 +322,34 @@ li.selected {
 }
 
 .right_news {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 2rem;
+    grid-row-gap: 5rem;
+    /* flex-wrap: wrap; */
     padding-left: 3rem;
-    row-gap: 3rem;
+    /* row-gap: 3rem; */
     height: 70rem;
     overflow-y: scroll;
 }
 
 .right_news_item {
-    /* max-width: 50%; */
     padding-bottom: 3rem;
-    /* flex: 50%; */
-    max-width: 30rem;
+    /* max-width: 25rem; */
+    width: 100%;
 }
 
 .right_news_item img {
     width: 100%;
     height: auto;
+    border-radius: .6rem;
+    margin-bottom: 1rem;
 }
 
 .right_news_item span {
     font-size: var(--sm-text);
+    color: var(--black-60);
 }
 
 @media only screen and (max-width: 768px) {
