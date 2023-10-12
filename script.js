@@ -186,7 +186,7 @@ startAutoplay();
 // Initial setup
 setInterval(() => {
   updateNavigation(currentIndex);
-  isNavigating = false;
+  isNavigating = false; // Reset the flag after the navigation
 }, 3000);
 
 

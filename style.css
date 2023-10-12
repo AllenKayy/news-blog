@@ -105,7 +105,6 @@ header :is(.nav_menu, .logo_container, .right_nav){
 
 .search_input {
     width: 100%;
-    max-width: 20rem;
     padding-block: .6rem;
     padding-inline: 2rem .6rem;
     border: 1px solid var(--black-60);
@@ -191,7 +190,7 @@ section {
 
 .carousel_card {
     /* position: relative; */
-    /* scroll-snap-align: start; */
+    scroll-snap-align: start;
 }
 
 .cover_img {
