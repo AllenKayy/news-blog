@@ -60,9 +60,6 @@ const displayTopHeadlines = (index) => {
   carouselCards.forEach((card, i) => {
     card.style.display = i === index ? 'block' : 'none';
   });
-
-  const carouselImage = carouselCards[index].querySelector('.cover_img');
-  carouselImage.src = news.urlToImage;
   
   const carouselOverview = document.querySelector('.carousel_overview');
   carouselOverview.innerHTML = `
@@ -95,11 +92,10 @@ const displayTopHeadlines = (index) => {
 }
 
 // Function to display side news
-const displaySideNews = (news, index) => {
+const displaySideNews = (news) => {
   const sideNews = document.querySelector(".right_news");
-  const sideNewsItem = sideNews[index];
 
-  sideNewsItem.innerHTML = `
+  sideNews.innerHTML = `
     <div class="right_news_item border_bottom" id="each_news">
       <img src="${news.urlToImage}" alt="">
       <h3 class="bg_text">${news.title}</h3>
@@ -111,23 +107,21 @@ const displaySideNews = (news, index) => {
 }
 
 // Function to display side news
-const displayBottomNews = (news, index) => {
-  const dataId = `bottom_news_${index + 1}`;
-  const bottomNewsItem = document.querySelector(`[data-id="${dataId}"]`);
+const displayBottomNews = (news) => {
+  const bottomNews = document.querySelector(".bottom_news");
 
-  if (bottomNewsItem) {
-    bottomNewsItem.innerHTML = `
-      <h3 class="bg_text">${news.title}</h3>
+  bottomNews.innerHTML = `
+    <div class="bottom_news_content" id="each_news">
+      <h3 class="bg_text">${news.title}</</h3>
       <p class="md_text">${news.description}</p>
-    `;
-  }
+    </div>
+  `
 }
 
-const displayCurrentNews = (news, index) => {
+const displayCurrentNews = (news) => {
   const currentNews = document.querySelector(".current_news");
-  const currentNewsItem = currentNews[index];
 
-  currentNewsItem.innerHTML = `
+  currentNews.innerHTML = `
     <div class="each_news" id="each_news">
       <img src="${news.urlToImage}" alt="">
       <div class="news_details">
