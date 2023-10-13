@@ -51,17 +51,21 @@ displayDropDown();
 window.addEventListener('resize', displayDropDown)
 
 // Function to display news data 
-const displayTopHeadlines = (news) => {
-  // Top Headlines
-  const sliderEl = document.querySelector(".slider");
-  const carouselOverview = document.querySelector(".carousel_overview");
+const displayTopHeadlines = (index) => {
+  const carouselCards = document.querySelectorAll('.carousel_card');
+  carouselCards.forEach((card, i) => {
+    card.style.display = i === index ? 'block' : 'none';
+  });
 
-  sliderEl.innerHTML =`
-    <div class="carousel_card id="each_news">
-      <img src="${news.urlToImage}" alt="" class="cover_img" draggable="false">
-    </div>
-    `
+  // sliderEl.innerHTML =`
+  //   <div class="carousel_card id="each_news">
+  //     <img src="${news.urlToImage}" alt="" class="cover_img" draggable="false">
+  //   </div>
+  // `
+  // sliderEl.src = news.urlToImage;
   
+  const carouselOverview = document.querySelector('.carousel_overview');
+  const news = newsData[index];
   carouselOverview.innerHTML = `
     <div class="top_overview">
       <div>
@@ -92,7 +96,7 @@ const displayTopHeadlines = (news) => {
 }
 
 // Function to display side news
-const displaySideNews = (props) => {
+const displaySideNews = (news) => {
   const sideNews = document.querySelector(".right_news");
 
   sideNews.innerHTML = `
@@ -105,48 +109,59 @@ const displaySideNews = (props) => {
     </div>
   `
 }
+
 // Function to display side news
-const displayBottomNews = (props) => {
+const displayBottomNews = (news) => {
   const bottomNews = document.querySelector(".bottom_news");
 
   bottomNews.innerHTML = `
     <div class="bottom_news_content" id="each_news">
       <h3 class="bg_text">${news.title}</</h3>
-      <p class="md_text">${news.description}</</p>
+      <p class="md_text">${news.description}</p>
     </div>
   `
 }
 
-// const APIURL = "https://newsapi.org/v2/everything?q=-sex"
-// 099148be22804e849a0c6fe022b7cf5e
+const displayCurrentNews = (news) => {
+  const currentNews = document.querySelectorAll(".current_news");
+
+  currentNews.innerHTML = `
+    <div class="each_news" id="each_news">
+      <img src="${news.urlToImage}" alt="">
+      <div class="news_details">
+        <h3 class="bg_text">${news.title}</h3>
+        <p class="md_text">${news.description}</p>
+        <span>${news.publishedAt} &#8226;</span>
+        <span>By ${news.author}</span>
+      </div>
+    </div>
+  `
+}
+
+const APIURL = "https://newsapi.org/v2/everything?q=-sex"
+
 fetch(APIURL, {
   method: 'GET',
   headers: {
-      // 'X-Api-Key': '198d6676e82741a5b83c7db74ae51e0a'
+      'X-Api-Key': '198d6676e82741a5b83c7db74ae51e0a'
   }
 })
 .then(res => res.json())
 .then(data => {
   const articles = data.articles
   displayNews(articles);
-  // articles.forEach(props => {
-  //   // console.log(props.content);
-  //   displayNwes(props);
-  //   displayTopHeadlines(props);
-  //   displayBottomNews(props);
-  //   displaySideNews(props);
-  // });
 })
 .catch(err => console.error("Error fetching data:", err))
 
 function displayNews(newsData) {
-  newsData.forEach((news) => {
-    displayTopHeadlines(news);
-    displayBottomNews(news);
-    displaySideNews(news);
+  newsData.forEach((news, index) => {
+    displayTopHeadlines((news, index));
+    displayBottomNews((news, index));
+    displaySideNews((news, index));
+    displayCurrentNews((news, index));
   });
 
-  const newsElements = document.querySelectorAll('each_news');
+  const newsElements = document.querySelectorAll('#each_news');
   newsElements.forEach((element, index) => {
     element.addEventListener('click', () => {
       displayDetailsPage(newsData[index]);
@@ -174,9 +189,23 @@ searchInput.addEventListener('input', () => {
   displayNews(filteredNews);
 });
 
+// Function to open news page
+function displayDetailsPage(news) {
+  const detailsPage = window.open('./selected-news.html');
 
+  detailsPage.onload = function () {
+    detailsPage.document.getElementById('newsImage').src = news.urlToImage;
+    detailsPage.document.getElementById('newsTitle').textContent = news.title;
+    detailsPage.document.getElementById('newsAuthor').textContent = `By ${news.author}`;
+    detailsPage.document.getElementById('newsDate').textContent = news.publishedAt;
+    detailsPage.document.getElementById('newsContent').textContent = news.content;
 
-// const sliderEl = document.querySelector(".slider");
+    const readMoreButton = detailsPage.document.querySelector('.read_more');
+    readMoreButton.href = news.url;
+  };
+}
+
+const sliderEl = document.querySelector(".slider");
 const carouselBtn = document.querySelectorAll(".carousel_btn div");
 const navigationItems = document.querySelectorAll(".navigation li");
 const carouselCards = document.querySelectorAll(".carousel_card");
