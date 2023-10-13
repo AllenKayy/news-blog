@@ -96,18 +96,18 @@ const displayTopHeadlines = (index) => {
 
 // Function to display side news
 const displaySideNews = (news, index) => {
-  const dataId = `right_news_${index + 1}`;
-  const rightNewsItem = document.querySelector(`[data-id="${dataId}"]`);
+  const sideNews = document.querySelector(".right_news");
+  const sideNewsItem = sideNews[index];
 
-  if (rightNewsItem) {
-    rightNewsItem.innerHTML = `
+  sideNewsItem.innerHTML = `
+    <div class="right_news_item border_bottom" id="each_news">
       <img src="${news.urlToImage}" alt="">
       <h3 class="bg_text">${news.title}</h3>
       <p class="md_text">${news.description}</p>
       <span>${news.publishedAt} &#8226;</span>
       <span>By ${news.author}</span>
-    `;
-  }
+    </div>
+  `
 }
 
 // Function to display side news
@@ -157,10 +157,10 @@ fetch(APIURL, {
 
 function displayNews(newsData) {
   newsData.forEach((news, index) => {
-    displayTopHeadlines((news, index));
-    displayBottomNews((news, index));
-    displaySideNews((news, index));
-    displayCurrentNews((news, index));
+    displayTopHeadlines(index);
+    displayBottomNews(news);
+    displaySideNews(news);
+    displayCurrentNews(news);
   });
 
   const newsElements = document.querySelectorAll('#each_news');

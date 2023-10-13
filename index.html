@@ -38,16 +38,16 @@
             <div class="left_news">
                 <div class="carousel border_bottom">
                     <div class="slider">
-                        <div class="carousel_card" id="each_news" id="carousel_news_1">
+                        <div class="carousel_card" id="each_news">
                             <img src="" alt="" class="cover_img" draggable="false">
                         </div>
-                        <div class="carousel_card" id="each_news" id="carousel_news_2">
+                        <div class="carousel_card" id="each_news">
                             <img src="" alt="" class="cover_img" draggable="false">
                         </div>
-                        <div class="carousel_card" id="each_news" id="carousel_news_3">
+                        <div class="carousel_card" id="each_news">
                             <img src="" alt="" class="cover_img" draggable="false">
                         </div>
-                        <div class="carousel_card" id="each_news" id="carousel_news_4">
+                        <div class="carousel_card" id="each_news">
                             <img src="" alt="" class="cover_img" draggable="false">
                         </div>
                     </div>
@@ -55,17 +55,12 @@
                 </div>
                 
                 <div class="bottom_news border_bottom">
-                    <div class="each_news" id="each_news" data-id="bottom_news_1"></div>
-                    <div class="each_news" id="each_news" data-id="bottom_news_2"></div>
+                    <div class="each_news" id="each_news"></div>
+                    <div class="each_news" id="each_news">
                 </div>
             </div>
 
-            <div class="right_news">
-                <div class="right_news_item border_bottom" id="each_news" data-id="right_news_1"></div>
-                <div class="right_news_item border_bottom" id="each_news" data-id="right_news_2"></div>
-                <div class="right_news_item border_bottom" id="each_news" data-id="right_news_3"></div>
-                <div class="right_news_item border_bottom" id="each_news" data-id="right_news_4"></div>
-            </div>
+            <div class="right_news"></div>
         </section>
 
         <section class="section2">
@@ -97,43 +92,7 @@
             </div>
         </section>
     </main>
-
-    <!-- <script>
-        const dropdown = document.querySelector('.categories');
-        const categoryEl = `
-            <div class="category" id="home">Home</div>
-            <div class="category" id="business">Business</div>
-            <div class="category" id="technology">Technology</div>
-            <div class="category" id="entertainment">Entertainment</div>
-            <div class="category" id="general">General</div>
-            <div class="category" id="health">Health</div>
-            <div class="category" id="science">Science</div>
-            <div class="category" id="sports">Sports</div>
-        `
-        const categoryDropDown = `
-            <select name="category" id="category">
-                <option value="Home">Home</option>
-                <option value="Business">Business</option>
-                <option value="Technology">Technology</option>
-                <option value="Entertainment">Entertainment</option>
-                <option value="General">General</option>
-                <option value="Health">Health</option>
-                <option value="Science">Science</option>
-                <option value="Sports">Sports</option>
-            </select>
-        `
-
-        const displayDropDown = () => {
-            if(window.innerWidth <= 992) {
-                console.log(window.innerWidth)
-                dropdown.innerHTML = categoryDropDown;
-            } else {
-                dropdown.innerHTML = categoryEl;
-            }
-        }
-        displayDropDown();
-        window.addEventListener('resize', displayDropDown)
-    </script> -->
+    
     <script src="script.js"></script>
 </body>
 </html>
