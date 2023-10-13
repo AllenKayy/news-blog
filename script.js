@@ -1,3 +1,4 @@
+// Function to get current date
 const getCurrentDate = () => {
   const currentDate = document.querySelector("#current-date");
   const date = new Date();
@@ -12,71 +13,175 @@ const getCurrentDate = () => {
 };
 getCurrentDate();
 
-const APIURL = "https://newsapi.org/v2/everything?q=-sex"
-// 099148be22804e849a0c6fe022b7cf5e
-fetch(APIURL, {
-  method: 'GET',
-  headers: {
-      'X-Api-Key': '198d6676e82741a5b83c7db74ae51e0a'
-  }
-})
-.then(res => res.json())
-.then(data => {
-  const articles = data.articles
-  articles.forEach(props => {
-    // console.log(props.content);
-    displayNews(props);
-  });
-})
-.catch(err => console.error("Error fetching data:", err))
+// Function to make category section responsive
+const dropdown = document.querySelector('.categories');
+const categoryEl = `
+  <div class="category" id="home">Home</div>
+  <div class="category" id="business">Business</div>
+  <div class="category" id="technology">Technology</div>
+  <div class="category" id="entertainment">Entertainment</div>
+  <div class="category" id="general">General</div>
+  <div class="category" id="health">Health</div>
+  <div class="category" id="science">Science</div>
+  <div class="category" id="sports">Sports</div>
+`
+const categoryDropDown = `
+  <select name="category" id="category">
+    <option value="Home">Home</option>
+    <option value="Business">Business</option>
+    <option value="Technology">Technology</option>
+    <option value="Entertainment">Entertainment</option>
+    <option value="General">General</option>
+    <option value="Health">Health</option>
+    <option value="Science">Science</option>
+    <option value="Sports">Sports</option>
+  </select>
+`
 
-const CarouselEl = document.querySelector(".carousel");
-const sliderEl = document.querySelector(".slider");
-const carouselOverview = document.querySelector(".carousel_overview");
-const carouselBtn = document.querySelectorAll(".carousel_btn div");
-const carouselCards = document.querySelectorAll(".carousel_card");
-const navigationItems = document.querySelectorAll(".navigation li");
-const cardWidth = carouselCards[0].offsetWidth;
-let currentIndex = 0;
+const displayDropDown = () => {
+  if(window.innerWidth <= 992) {
+      console.log(window.innerWidth)
+      dropdown.innerHTML = categoryDropDown;
+  } else {
+      dropdown.innerHTML = categoryEl;
+  }
+}
+
+displayDropDown();
+window.addEventListener('resize', displayDropDown)
 
 // Function to display news data 
-
-const displayNews = (props) => {
+const displayTopHeadlines = (news) => {
   // Top Headlines
-  CarouselEl.innerHTML +=`
-    <div class="carousel_card">
-      <img src="${props.urlToImage}" alt="" class="cover_img" draggable="false">
-    </div>
+  const sliderEl = document.querySelector(".slider");
+  const carouselOverview = document.querySelector(".carousel_overview");
 
-    <div class="carousel_overview">
-      <div class="top_overview">
-        <div>
-            <span>${props.publishedAt} &#8226;</span>
-            <span>By ${props.author}</span>
-        </div>
-        <div>TECHNOLOGY</div>
+  sliderEl.innerHTML =`
+    <div class="carousel_card id="each_news">
+      <img src="${news.urlToImage}" alt="" class="cover_img" draggable="false">
+    </div>
+    `
+  
+  carouselOverview.innerHTML = `
+    <div class="top_overview">
+      <div>
+          <span>${news.publishedAt} &#8226;</span>
+          <span>By ${news.author}</span>
       </div>
-      <h1>${props.title}</h1>
-      <p>${props.description}</p>
-      <div class="carousel_navigation flex">
-        <ul class="navigation flex">
-            <li class="selected"></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-        <div class="carousel_btn flex">
-          <div class="arrow_btn prev flex">
-            <img src="./assets/svg/arrow-right-solid.svg" alt="" width="14">
-          </div>
-          <div class="arrow_btn next flex">
-            <img src="./assets/svg/arrow-right-solid.svg" alt="" width="14">
-          </div>
+      <div>TECHNOLOGY</div>
+    </div>
+    <h1>${news.title}</h1>
+    <p>${news.description}</p>
+    <div class="carousel_navigation flex">
+      <ul class="navigation flex">
+          <li class="selected"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+      </ul>
+      <div class="carousel_btn flex">
+        <div class="arrow_btn prev flex">
+          <img src="./assets/svg/arrow-right-solid.svg" alt="" width="14">
+        </div>
+        <div class="arrow_btn next flex">
+          <img src="./assets/svg/arrow-right-solid.svg" alt="" width="14">
         </div>
       </div>
     </div>
   ` 
 }
+
+// Function to display side news
+const displaySideNews = (props) => {
+  const sideNews = document.querySelector(".right_news");
+
+  sideNews.innerHTML = `
+    <div class="right_news_item border_bottom" id="each_news">
+      <img src="${news.urlToImage}" alt="">
+      <h3 class="bg_text">${news.title}</h3>
+      <p class="md_text">${news.description}</p>
+      <span>${news.publishedAt} &#8226;</span>
+      <span>By ${news.author}</span>
+    </div>
+  `
+}
+// Function to display side news
+const displayBottomNews = (props) => {
+  const bottomNews = document.querySelector(".bottom_news");
+
+  bottomNews.innerHTML = `
+    <div class="bottom_news_content" id="each_news">
+      <h3 class="bg_text">${news.title}</</h3>
+      <p class="md_text">${news.description}</</p>
+    </div>
+  `
+}
+
+// const APIURL = "https://newsapi.org/v2/everything?q=-sex"
+// 099148be22804e849a0c6fe022b7cf5e
+fetch(APIURL, {
+  method: 'GET',
+  headers: {
+      // 'X-Api-Key': '198d6676e82741a5b83c7db74ae51e0a'
+  }
+})
+.then(res => res.json())
+.then(data => {
+  const articles = data.articles
+  displayNews(articles);
+  // articles.forEach(props => {
+  //   // console.log(props.content);
+  //   displayNwes(props);
+  //   displayTopHeadlines(props);
+  //   displayBottomNews(props);
+  //   displaySideNews(props);
+  // });
+})
+.catch(err => console.error("Error fetching data:", err))
+
+function displayNews(newsData) {
+  newsData.forEach((news) => {
+    displayTopHeadlines(news);
+    displayBottomNews(news);
+    displaySideNews(news);
+  });
+
+  const newsElements = document.querySelectorAll('each_news');
+  newsElements.forEach((element, index) => {
+    element.addEventListener('click', () => {
+      displayDetailsPage(newsData[index]);
+    });
+  });
+}
+
+// Function to filter by category 
+const categorySelector = document.querySelector('.categories');
+
+categorySelector.addEventListener('change', () => {
+  const selectedCategory = categorySelector.value;
+  const filteredNews = newsData.filter((news) => news.category === selectedCategory);
+  displayNews(filteredNews);
+});
+
+// Function to filter based on search query
+const searchInput = document.querySelector('.search_input');
+
+searchInput.addEventListener('input', () => {
+  const searchQuery = searchInput.value.toLowerCase();
+  const filteredNews = newsData.filter((news) =>
+    news.title.toLowerCase().includes(searchQuery)
+  );
+  displayNews(filteredNews);
+});
+
+
+
+// const sliderEl = document.querySelector(".slider");
+const carouselBtn = document.querySelectorAll(".carousel_btn div");
+const navigationItems = document.querySelectorAll(".navigation li");
+const carouselCards = document.querySelectorAll(".carousel_card");
+const cardWidth = carouselCards[0].offsetWidth;
+let currentIndex = 0;
 
 // Function to update the carousel to the given index
 function updateCarousel(index) {

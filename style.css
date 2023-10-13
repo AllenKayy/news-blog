@@ -7,6 +7,7 @@
     --black-60: #A9A9A9;
     --black-40: #D4D4D4;
     --black-20: #EAEAEA;
+    --headline: 3rem;
     --bg-text: 2.3rem;
     --md-text: 1.3rem;
     --sm-text: 1.1rem;
@@ -26,6 +27,12 @@ html {
 
 body {
     background-color: var(--bg-color);
+}
+
+header,
+.current_news,
+.section1,
+.selected_news_section {
     padding-inline: 5rem;
 }
 
@@ -70,7 +77,8 @@ header :is(.nav_menu, .logo_container, .right_nav){
     cursor: pointer;
 }
 
-.subscribe_btn:hover {
+.subscribe_btn:hover,
+.subscribe_box form>button:hover {
     opacity: .8;
 }
 
@@ -86,8 +94,9 @@ header :is(.nav_menu, .logo_container, .right_nav){
     align-items: center;
 }
 
-.query {
+div.query {
     color: var(--black-60);
+    margin-inline: 5rem;
     border-bottom: 2px solid currentColor;
 }
 
@@ -195,8 +204,8 @@ section {
 }
 
 .cover_img {
-    width: 100%;
-    max-width: 70rem;
+    /* width: 100%; */
+    width: 70rem;
     height: auto;
     border-radius: 6px;
     cursor: pointer;
@@ -217,7 +226,8 @@ section {
     cursor: pointer;
 }
 
-.top_overview {
+.top_overview,
+.info {
     justify-content: space-between;
     font-size: var(--sm-text);
     color: var(--black-60);
@@ -335,9 +345,119 @@ li.selected {
     margin-bottom: 1rem;
 }
 
-.right_news_item span {
+.right_news_item span,
+.current_news span {
     font-size: var(--sm-text);
     color: var(--black-60);
+}
+
+.section2 :is(.current, .current_news_section, .current_news, .each_news) {
+    display: flex;
+}
+
+.current {
+    margin-bottom: 3rem;
+}
+
+.current,
+.each_news,
+.section3 {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.current>div {
+    border: 1px solid var(--black-60);
+    width: 53rem;
+}
+
+.current h2 {
+    font-size: var(--headline);
+    font-weight: 900;
+}
+
+.current_news {
+    flex-direction: column;
+    row-gap: 3rem;
+}
+
+.current_news:first-child {
+    border-right: 1px solid var(--black-40);
+}
+
+.each_news {
+    border-bottom: 1px solid var(--black-40);
+    padding-bottom: 3rem;
+}
+
+.each_news img {
+    width: 100%;
+    max-width: 20rem;
+    margin-right: 2rem;
+    border-radius: .6rem;
+}
+
+.section3 {
+    padding-inline: 8rem;
+    display: flex;
+}
+
+.subscribe_info {
+    width: 35rem;
+}
+
+.subscribe_bd {
+    font-size: var(--bg-text);
+    font-weight: 600;
+}
+
+.subscribe_text {
+    font-size: var(--md-text);
+    margin-top: 1rem;
+}
+
+.subscribe_box {
+    box-shadow: rgba(138, 133, 133, 0.2) 0px 8px 24px;
+    padding: 2rem 4rem;
+}
+
+.subscribe_box p:nth-child(1) {
+    font-size: 2rem;
+    font-weight:600;
+}
+
+.subscribe_box form  {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.subscribe_box form>input {
+    padding-block: .6rem;
+    padding-left: 1rem;
+    outline: 0;
+}
+
+.subscribe_box form>button {
+    padding: .7rem 1.5rem;
+    background-color: var(--black-100);
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+}
+
+a.back_btn {
+    margin-bottom: 2rem;
+}
+
+a.back_btn img {
+    width: 25px;
+    transform: rotateY(180deg);
+}
+
+.selected_news img {
+    width: 100%;
+
 }
 
 @media only screen and (max-width: 768px) {
