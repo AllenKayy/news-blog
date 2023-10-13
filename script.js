@@ -50,22 +50,21 @@ const displayDropDown = () => {
 displayDropDown();
 window.addEventListener('resize', displayDropDown)
 
+let newsData;
+
 // Function to display news data 
 const displayTopHeadlines = (index) => {
   const carouselCards = document.querySelectorAll('.carousel_card');
+  const news = newsData[index];
+
   carouselCards.forEach((card, i) => {
     card.style.display = i === index ? 'block' : 'none';
   });
 
-  // sliderEl.innerHTML =`
-  //   <div class="carousel_card id="each_news">
-  //     <img src="${news.urlToImage}" alt="" class="cover_img" draggable="false">
-  //   </div>
-  // `
-  // sliderEl.src = news.urlToImage;
+  const carouselImage = carouselCards[index].querySelector('.cover_img');
+  carouselImage.src = news.urlToImage;
   
   const carouselOverview = document.querySelector('.carousel_overview');
-  const news = newsData[index];
   carouselOverview.innerHTML = `
     <div class="top_overview">
       <div>
@@ -96,36 +95,39 @@ const displayTopHeadlines = (index) => {
 }
 
 // Function to display side news
-const displaySideNews = (news) => {
-  const sideNews = document.querySelector(".right_news");
+const displaySideNews = (news, index) => {
+  const dataId = `right_news_${index + 1}`;
+  const rightNewsItem = document.querySelector(`[data-id="${dataId}"]`);
 
-  sideNews.innerHTML = `
-    <div class="right_news_item border_bottom" id="each_news">
+  if (rightNewsItem) {
+    rightNewsItem.innerHTML = `
       <img src="${news.urlToImage}" alt="">
       <h3 class="bg_text">${news.title}</h3>
       <p class="md_text">${news.description}</p>
       <span>${news.publishedAt} &#8226;</span>
       <span>By ${news.author}</span>
-    </div>
-  `
+    `;
+  }
 }
 
 // Function to display side news
-const displayBottomNews = (news) => {
-  const bottomNews = document.querySelector(".bottom_news");
+const displayBottomNews = (news, index) => {
+  const dataId = `bottom_news_${index + 1}`;
+  const bottomNewsItem = document.querySelector(`[data-id="${dataId}"]`);
 
-  bottomNews.innerHTML = `
-    <div class="bottom_news_content" id="each_news">
-      <h3 class="bg_text">${news.title}</</h3>
+  if (bottomNewsItem) {
+    bottomNewsItem.innerHTML = `
+      <h3 class="bg_text">${news.title}</h3>
       <p class="md_text">${news.description}</p>
-    </div>
-  `
+    `;
+  }
 }
 
-const displayCurrentNews = (news) => {
-  const currentNews = document.querySelectorAll(".current_news");
+const displayCurrentNews = (news, index) => {
+  const currentNews = document.querySelector(".current_news");
+  const currentNewsItem = currentNews[index];
 
-  currentNews.innerHTML = `
+  currentNewsItem.innerHTML = `
     <div class="each_news" id="each_news">
       <img src="${news.urlToImage}" alt="">
       <div class="news_details">
@@ -148,8 +150,8 @@ fetch(APIURL, {
 })
 .then(res => res.json())
 .then(data => {
-  const articles = data.articles
-  displayNews(articles);
+  newsData = data.articles;
+  displayNews(newsData);
 })
 .catch(err => console.error("Error fetching data:", err))
 
