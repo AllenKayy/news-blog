@@ -50,14 +50,12 @@ const displayDropDown = () => {
 displayDropDown();
 window.addEventListener('resize', displayDropDown)
 
-let newsData;
-
 // Function to display news data 
 const displayTopHeadlines = (news) => {
   const sliderEl = document.querySelector(".slider");
   const carouselOverview = document.querySelector(".carousel_overview");
   const size = 4;
-  let currentIndex = 0; // Initialize the current index
+  let currentIndex = 0;
 
   // Function to update the carousel overview based on the current index
   const updateOverview = (index) => {
@@ -94,17 +92,13 @@ const displayTopHeadlines = (news) => {
   // Initialize the carousel overview
   updateOverview(currentIndex);
 
-  // Event listener for scrolling or other interactions that change the current index
   sliderEl.addEventListener('scroll', () => {
-    // Calculate the current index based on slider position
     const cardWidth = document.querySelector(".carousel_card").offsetWidth;
     currentIndex = Math.round(sliderEl.scrollLeft / cardWidth);
 
-    // Update the carousel overview based on the current index
     updateOverview(currentIndex);
   });
 
-  // Rest of your code for displaying carousel cards
   sliderEl.innerHTML = '';
   news.slice(0, size).forEach(news => {
     sliderEl.innerHTML += `
@@ -113,6 +107,7 @@ const displayTopHeadlines = (news) => {
       </div>
     `;
   });
+
 };
 
 
