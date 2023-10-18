@@ -156,7 +156,7 @@ const displayBottomNews = (news) => {
 }
 
 const APIURL = "https://newsapi.org/v2/everything?q=-sex"
-// 099148be22804e849a0c6fe022b7cf5e
+
 fetch(APIURL, {
   method: 'GET',
   headers: {
@@ -204,7 +204,21 @@ searchInput.addEventListener('input', () => {
   displayNews(filteredNews);
 });
 
+// Function to open news page
+function displayDetailsPage(news) {
+  const detailsPage = window.open('./selected-news.html');
 
+  detailsPage.onload = function () {
+    detailsPage.document.getElementById('newsImage').src = news.urlToImage;
+    detailsPage.document.getElementById('newsTitle').textContent = news.title;
+    detailsPage.document.getElementById('newsAuthor').textContent = `By ${news.author}`;
+    detailsPage.document.getElementById('newsDate').textContent = news.publishedAt;
+    detailsPage.document.getElementById('newsContent').textContent = news.content;
+
+    const readMoreButton = detailsPage.document.querySelector('.read_more');
+    readMoreButton.href = news.url;
+  };
+}
 
 const sliderEl = document.querySelector(".slider");
 const carouselBtn = document.querySelectorAll(".carousel_btn div");
