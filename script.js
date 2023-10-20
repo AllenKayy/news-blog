@@ -250,7 +250,7 @@ const startAutoplay = () => {
   if (!isNavigating) {
     autoplayInterval = setInterval(() => {
       updateCarousel(infiniteScroll(currentIndex + 1));
-    }, 3000);
+    }, 6000);
   }
 }
 
